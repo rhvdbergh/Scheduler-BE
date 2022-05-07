@@ -1,0 +1,13 @@
+services:
+  scheduler_mysql:
+    image: mysql:5.7
+    volumes:
+      - scheduler-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: scheduler
+    ports: 
+      - 3306:3306
+
+volumes:
+  scheduler-mysql-data:
