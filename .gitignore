@@ -1,0 +1,24 @@
+# General
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# NuGet Packages
+nupkg/
+
+# Rider settings
+.idea
+
+#User files
+*.suo
+*.user
+
+#Visual Studio
+.vs/
+[Bb]in/
+[Oo]bj/
+_UpgradeReport_Files/
+[Pp]ackages/
+
+# Production
+.build
