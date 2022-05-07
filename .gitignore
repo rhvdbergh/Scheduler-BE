@@ -13,6 +13,10 @@ nupkg/
 *.suo
 *.user
 
+# Local files
+*.local
+*.local.*
+
 #Visual Studio
 .vs/
 [Bb]in/

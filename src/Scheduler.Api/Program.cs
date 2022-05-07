@@ -3,8 +3,16 @@ using Scheduler.Infra.Sql.Base;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = "server=localhost,3306;user=root;password=secret;database=scheduler";
-var serverVersion = new MySqlServerVersion(new Version(5, 7));
+builder.Configuration.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
+
+// Configure SQL database.
+
+var dbSettings = builder.Configuration.GetSection("Db");
+
+var connectionString = dbSettings["ConnectionString"];
+var majorSqlVersion = int.Parse(dbSettings["Version:Major"]);
+var minorSqlVersion = int.Parse(dbSettings["Version:Minor"]);
+var serverVersion = new MySqlServerVersion(new Version(majorSqlVersion, minorSqlVersion));
 
 // Add services to the container.
 
