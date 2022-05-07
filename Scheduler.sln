@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{68F4E5E3-1C7A-41FB-87EC-2B23B4430B09}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler.Api", "src\Scheduler.Api\Scheduler.Api.csproj", "{D3AAC634-2CA2-499A-81F4-99A0AC777DA5}"
 EndProject
 Global
@@ -22,6 +20,5 @@ Global
 		{D3AAC634-2CA2-499A-81F4-99A0AC777DA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D3AAC634-2CA2-499A-81F4-99A0AC777DA5} = {68F4E5E3-1C7A-41FB-87EC-2B23B4430B09}
 	EndGlobalSection
 EndGlobal
