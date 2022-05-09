@@ -1,5 +1,11 @@
+using System.Reflection;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Scheduler.Api;
+using Scheduler.Core.Base;
+using Scheduler.Core.Models;
 using Scheduler.Infra.Sql.Base;
+using Scheduler.Infra.Sql.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +29,12 @@ builder.Services.AddDbContext<SchedulerDbContext>(
         .EnableDetailedErrors()
 );
 
+builder.Services.AddTransient<IProfessorRepository, ProfessorRepository>();
+
+builder.Services.AddMediatR(typeof(Professor));
+
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
