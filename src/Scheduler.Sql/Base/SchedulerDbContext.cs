@@ -7,7 +7,11 @@ public class SchedulerDbContext : DbContext
 {
     public DbSet<Professor> Professors { get; set; }
     public DbSet<LectureGroup> LectureGroups { get; set; }
-
+    public DbSet<Season> Seasons { get; set; }
+    public DbSet<ProfessorPreference> ProfessorPreferences { get; set; }
+    public DbSet<TimeSlot> TimeSlots { get; set; }
+    
+    
     public SchedulerDbContext(DbContextOptions options) : base(options)
     {
     }
@@ -16,7 +20,10 @@ public class SchedulerDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Season>(entity => entity.Property(x => x.Name).HasMaxLength(127));
+        modelBuilder.Entity<Season>(entity =>
+        {
+            entity.Property(x => x.Name).HasMaxLength(127);
+        });
         modelBuilder.Entity<Professor>(entity => { entity.Property(x => x.Name).HasMaxLength(127); }
         );
         modelBuilder.Entity<LectureGroup>(entity =>
@@ -27,16 +34,25 @@ public class SchedulerDbContext : DbContext
                     .WithMany(y => y.LectureGroups)
                     .HasForeignKey(y => y.ProfessorId);
                 entity.HasOne(y => y.Season)
-                    .WithMany(y => y.LectureGroups)
+                    .WithMany()
                     .HasForeignKey(y => y.SeasonId);
             }
         );
         modelBuilder.Entity<ProfessorPreference>(entity =>
             {
                 entity.HasOne(y => y.Professor)
-                    .WithMany()
+                    .WithMany(y => y.ProfessorPreferences)
                     .HasForeignKey(y => y.ProfessorId);
             }
         );
+        modelBuilder.Entity<TimeSlot>(entity =>
+        {
+            entity.HasOne(x => x.Season)
+                .WithMany(x => x.TimeSlots)
+                .HasForeignKey(x => x.SeasonId);
+            entity.HasOne(x => x.LectureGroup)
+                .WithMany(x => x.TimeSlots)
+                .HasForeignKey(x => x.LectureGroupId);
+        });
     }
 }

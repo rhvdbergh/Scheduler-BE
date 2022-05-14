@@ -22,7 +22,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Professors" />
+    <Compile Remove="Controllers\Professors\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Controllers\Professors\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Controllers\Professors\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Controllers\Professors\**" />
   </ItemGroup>
 
 </Project>
